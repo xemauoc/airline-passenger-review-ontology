@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="resources/primer.css" media="screen"/>
+<link rel="stylesheet" href="resources/rec.css" media="screen"/>
+<link rel="stylesheet" href="resources/extra.css" media="screen"/>
+<link rel="stylesheet" href="resources/owl.css" media="screen"/>
+<link rel="stylesheet" href="resources/dark.css" media="(prefers-color-scheme: dark)"/>
+<link rel="stylesheet" href="resources/light.css" media="(prefers-color-scheme: light)"/>
+<link rel="stylesheet" href="resources/slider.css" media="screen"/>
+<meta name="color-scheme" content="dark light">
+<script type="module" src="resources/dark-mode-toggle.mjs"></script><div class="darkmode">
+	<dark-mode-toggle class="slider"></dark-mode-toggle>
+</div>
+ <title>Airline Passenger Review Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review","name":"Airline Passenger Review Ontology", "headline":"The Airline Passenger Review Ontology is a proposed solution for the evaluation (PEC2) of the course "Representacion del Conocimiento" imparted at the UOC (Universitat Oberta de Catalunya).", "dateReleased":"2024", "author":[{"@type":"Person","name":"Xema Belmonte Marin"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked.parse(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>Airline Passenger Review Ontology</h1>
+<h2>Release: 2024</h2>
+
+
+<dl>
+<dt>Latest version:</dt>
+<dd><a href="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review">http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review</a></dd>
+<dt>Authors:</dt>
+<dd>Xema Belmonte Marin</dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.owl" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License:</dt><dd><a href="http://insertlicenseURIhere.example.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.example.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSevaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --></dl>
+
+<a href="provenance/provenance-en.html" target="_blank">Provenance of this page</a><hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+The Airline Passenger Review Ontology is a proposed solution for the evaluation (PEC2) of the course "Representacion del Conocimiento" imparted at the UOC (Universitat Oberta de Catalunya).</span>
+</div>
+<div id="toc"></div>  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">Airline Passenger Review: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#Aircraft"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft">Aircraft</a>
+   </li>
+   <li>
+      <a href="#Airline"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Airline">Airline</a>
+   </li>
+   <li>
+      <a href="#Business"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business">Business</a>
+   </li>
+   <li>
+      <a href="#Business_Class"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a>
+   </li>
+   <li>
+      <a href="#Cabin_Staff_Service"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Cabin_Staff_Service">Cabin_Staff_Service</a>
+   </li>
+   <li>
+      <a href="#Country"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country">Country</a>
+   </li>
+   <li>
+      <a href="#Couple_Leisure"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure">Couple_Leisure</a>
+   </li>
+   <li>
+      <a href="#Date"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a>
+   </li>
+   <li>
+      <a href="#Day"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Day">Day</a>
+   </li>
+   <li>
+      <a href="#Dissatisfied"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied">Dissatisfied</a>
+   </li>
+   <li>
+      <a href="#Economy_Class"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a>
+   </li>
+   <li>
+      <a href="#Family_Leisure"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure">Family_Leisure</a>
+   </li>
+   <li>
+      <a href="#First_Class"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a>
+   </li>
+   <li>
+      <a href="#Flight_Information"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a>
+   </li>
+   <li>
+      <a href="#Flight_Ratings"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a>
+   </li>
+   <li>
+      <a href="#Food_&_Beverages"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&amp;_Beverages">Food_&amp;_Beverages</a>
+   </li>
+   <li>
+      <a href="#Ground_Service"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Ground_Service">Ground_Service</a>
+   </li>
+   <li>
+      <a href="#Inflight_Entertainment"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Inflight_Entertainment">Inflight_Entertainment</a>
+   </li>
+   <li>
+      <a href="#Leisure"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a>
+   </li>
+   <li>
+      <a href="#Location"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a>
+   </li>
+   <li>
+      <a href="#Month"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Month">Month</a>
+   </li>
+   <li>
+      <a href="#Neutral"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral">Neutral</a>
+   </li>
+   <li>
+      <a href="#Overall_Rating"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Overall_Rating">Overall_Rating</a>
+   </li>
+   <li>
+      <a href="#Passenger"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a>
+   </li>
+   <li>
+      <a href="#Premium_Economy"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a>
+   </li>
+   <li>
+      <a href="#Review"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a>
+   </li>
+   <li>
+      <a href="#Satisfaction"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a>
+   </li>
+   <li>
+      <a href="#Satisfied"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied">Satisfied</a>
+   </li>
+   <li>
+      <a href="#Seat_Comfort"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Comfort">Seat_Comfort</a>
+   </li>
+   <li>
+      <a href="#Seat_Type"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a>
+   </li>
+   <li>
+      <a href="#Solo_Leisure"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure">Solo_Leisure</a>
+   </li>
+   <li>
+      <a href="#Type_of_Passenger"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger">Type_of_Passenger</a>
+   </li>
+   <li>
+      <a href="#Value_for_Money"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Value_for_Money">Value_for_Money</a>
+   </li>
+   <li>
+      <a href="#Wifi_&_Connectivity"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&amp;_Connectivity">Wifi_&amp;_Connectivity</a>
+   </li>
+   <li>
+      <a href="#Year"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Year">Year</a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#arrives_to"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to">arrives_to</a>
+   </li>
+   <li>
+      <a href="#departs_from"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from">departs_from</a>
+   </li>
+   <li>
+      <a href="#flown_on"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on">flown_on</a>
+   </li>
+   <li>
+      <a href="#has_aircraft"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft">has_aircraft</a>
+   </li>
+   <li>
+      <a href="#has_airline"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline">has_airline</a>
+   </li>
+   <li>
+      <a href="#has_country"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country">has_country</a>
+   </li>
+   <li>
+      <a href="#has_date"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a>
+   </li>
+   <li>
+      <a href="#has_flight_information"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information">has_flight_information</a>
+   </li>
+   <li>
+      <a href="#has_location"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a>
+   </li>
+   <li>
+      <a href="#has_ratings"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings">has_rating</a>
+   </li>
+   <li>
+      <a href="#has_reviewer"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer">has_reviewer</a>
+   </li>
+   <li>
+      <a href="#is_aircraft_of"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of">is_aircraft_of</a>
+   </li>
+   <li>
+      <a href="#is_country_of"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of">is_country_of</a>
+   </li>
+   <li>
+      <a href="#is_flight_information_of"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of">is_flight_information_of</a>
+   </li>
+   <li>
+      <a href="#is_rating_of"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of">is_rating_of</a>
+   </li>
+   <li>
+      <a href="#is_reviewer_of"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of">is_reviewer_of</a>
+   </li>
+   <li>
+      <a href="#published_on"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on">published_on</a>
+   </li>
+</ul><h4>Data Properties</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#has_comment"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_comment">has_comment</a>
+   </li>
+   <li>
+      <a href="#has_rating_value"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_rating_value">has_rating_value</a>
+   </li>
+   <li>
+      <a href="#has_title"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_title">has_title</a>
+   </li>
+   <li>
+      <a href="#is_recommended"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_recommended">is_recommended</a>
+   </li>
+   <li>
+      <a href="#is_verified"
+         title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_verified">is_verified</a>
+   </li>
+</ul><h4>Annotation Properties</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#http://www.w3.org/2000/01/rdf-schema#sameAs" title="http://www.w3.org/2000/01/rdf-schema#sameAs">
+         <span>same As</span>
+      </a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">Airline Passenger Review: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+
+<span class="markdown">This ontology defines concepts for the representation of customer satisfaction reviews by airline passengers. Created by Xema Belmonte Marin (jbelmontemari@uoc.edu)</span></div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross-reference for Airline Passenger Review classes, object properties and data properties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Airline Passenger Review.
+<div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+ <h3 id="classes-headline" class="list">Classes</h3>
+ <ul class="hlist">
+  <li><a href="#Aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft">Aircraft</a></li>
+  <li><a href="#Airline" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Airline">Airline</a></li>
+  <li><a href="#Business" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business">Business</a></li>
+  <li><a href="#Business_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a></li>
+  <li><a href="#Cabin_Staff_Service" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Cabin_Staff_Service">Cabin_Staff_Service</a></li>
+  <li><a href="#Country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country">Country</a></li>
+  <li><a href="#Couple_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure">Couple_Leisure</a></li>
+  <li><a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a></li>
+  <li><a href="#Day" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Day">Day</a></li>
+  <li><a href="#Dissatisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied">Dissatisfied</a></li>
+  <li><a href="#Economy_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a></li>
+  <li><a href="#Family_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure">Family_Leisure</a></li>
+  <li><a href="#First_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a></li>
+  <li><a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a></li>
+  <li><a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a></li>
+  <li><a href="#Food_&_Beverages" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&amp;_Beverages">Food_&amp;_Beverages</a></li>
+  <li><a href="#Ground_Service" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Ground_Service">Ground_Service</a></li>
+  <li><a href="#Inflight_Entertainment" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Inflight_Entertainment">Inflight_Entertainment</a></li>
+  <li><a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a></li>
+  <li><a href="#Location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a></li>
+  <li><a href="#Month" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Month">Month</a></li>
+  <li><a href="#Neutral" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral">Neutral</a></li>
+  <li><a href="#Overall_Rating" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Overall_Rating">Overall_Rating</a></li>
+  <li><a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a></li>
+  <li><a href="#Premium_Economy" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a></li>
+  <li><a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a></li>
+  <li><a href="#Satisfaction" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a></li>
+  <li><a href="#Satisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied">Satisfied</a></li>
+  <li><a href="#Seat_Comfort" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Comfort">Seat_Comfort</a></li>
+  <li><a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a></li>
+  <li><a href="#Solo_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure">Solo_Leisure</a></li>
+  <li><a href="#Type_of_Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger">Type_of_Passenger</a></li>
+  <li><a href="#Value_for_Money" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Value_for_Money">Value_for_Money</a></li>
+  <li><a href="#Wifi_&_Connectivity" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&amp;_Connectivity">Wifi_&amp;_Connectivity</a></li>
+  <li><a href="#Year" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Year">Year</a></li>
+ </ul>
+ <div class="entity" id="Aircraft">
+  <h3>Aircraft<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft</p>
+  <div class="comment">
+   <span class="markdown">Represents a manufactured passenger aircraft</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#is_aircraft_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of">is_aircraft_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft">has_aircraft</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Airline">
+  <h3>Airline<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Airline</p>
+  <div class="comment">
+   <span class="markdown">This class represents a company that provides air transport for passengers</span>
+  </div>
+  <dl class="description">
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_airline" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline">has_airline</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Business">
+  <h3>Business<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business</p>
+  <div class="comment">
+   <span class="markdown">Class for passengers travelling with a clear purpose of performing business related activities</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Type_of_Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger">Type_of_Passenger</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Business_Class">
+  <h3>Business_Class<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class</p>
+  <div class="comment">
+   <span class="markdown">Business class is a travel class originally intended as an intermediate level of service between economy class and first class, but many airlines now offer business class as the highest level of service.</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Economy_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#First_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Premium_Economy" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Cabin_Staff_Service">
+  <h3>Cabin_Staff_Service<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Cabin_Staff_Service</p>
+  <div class="comment">
+   <span class="markdown">The cabin staff rating evaluates the professionalism, friendliness, and responsiveness of the flight attendants and other staff members</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Country">
+  <h3>Country<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country</p>
+  <div class="comment">
+   <span class="markdown">Represents a political state, nation or territory</span>
+  </div>
+  <dl class="description">
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#is_country_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of">is_country_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country">has_country</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Couple_Leisure">
+  <h3>Couple_Leisure<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure</p>
+  <div class="comment">
+   <span class="markdown">A type of leisure passenger who travels with a romantic partner</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Family_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure">Family_Leisure</a> <sup class="type-c" title="class">c</sup>, <a href="#Solo_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure">Solo_Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Date">
+  <h3>Date<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date</p>
+  <div class="comment">
+   <span class="markdown">Class to represent a date with month, year and/or day</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Day" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Day">Day</a> <sup class="type-c" title="class">c</sup>, <a href="#Month" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Month">Month</a> <sup class="type-c" title="class">c</sup>, <a href="#Year" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Year">Year</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#flown_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on">flown_on</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a> <sup class="type-op" title="object property">op</sup>, <a href="#published_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on">published_on</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Day">
+  <h3>Day<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Day</p>
+  <div class="comment">
+   <span class="markdown">Represents a day on a date</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Dissatisfied">
+  <h3>Dissatisfied<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied</p>
+  <div class="comment">
+   <span class="markdown">Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level "dissatisfied"</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Satisfaction" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Neutral" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral">Neutral</a> <sup class="type-c" title="class">c</sup>, <a href="#Satisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied">Satisfied</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Economy_Class">
+  <h3>Economy_Class<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class</p>
+  <div class="comment">
+   <span class="markdown">Economy clas or standard class, is the lowest class of seating in air travel.</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Business_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#First_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Premium_Economy" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Family_Leisure">
+  <h3>Family_Leisure<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure</p>
+  <div class="comment">
+   <span class="markdown">A type of leisure passenger who travels with children</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Couple_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure">Couple_Leisure</a> <sup class="type-c" title="class">c</sup>, <a href="#Solo_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure">Solo_Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="First_Class">
+  <h3>First_Class<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class</p>
+  <div class="comment">
+   <span class="markdown">First class is the most luxurious class of accommodation on an airplan. It is usually much more expensive than business class and economy class, and offers the best amenities.</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Business_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Economy_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Premium_Economy" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Flight_Information">
+  <h3>Flight_Information<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information</p>
+  <div class="comment">
+   <span class="markdown">This class includes the subclasses for the flight information that contains a review</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft">Aircraft</a> <sup class="type-c" title="class">c</sup>, <a href="#Location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a> <sup class="type-c" title="class">c</sup>, <a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#arrives_to" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to">arrives_to</a> <sup class="type-op" title="object property">op</sup>, <a href="#departs_from" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from">departs_from</a> <sup class="type-op" title="object property">op</sup>, <a href="#flown_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on">flown_on</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft">has_aircraft</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_flight_information_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of">is_flight_information_of</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_verified" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_verified">is_verified</a> <sup class="type-dp" title="data property">dp</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_flight_information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information">has_flight_information</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_aircraft_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of">is_aircraft_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Flight_Ratings">
+  <h3>Flight_Rating<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings</p>
+  <div class="comment">
+   <span class="markdown">This class represents the concept of ratings for the services or the whole experience of a flight. They are assessed by a passenger of such flight</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Cabin_Staff_Service" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Cabin_Staff_Service">Cabin_Staff_Service</a> <sup class="type-c" title="class">c</sup>, <a href="#Food_&_Beverages" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&amp;_Beverages">Food_&amp;_Beverages</a> <sup class="type-c" title="class">c</sup>, <a href="#Ground_Service" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Ground_Service">Ground_Service</a> <sup class="type-c" title="class">c</sup>, <a href="#Inflight_Entertainment" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Inflight_Entertainment">Inflight_Entertainment</a> <sup class="type-c" title="class">c</sup>, <a href="#Overall_Rating" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Overall_Rating">Overall_Rating</a> <sup class="type-c" title="class">c</sup>, <a href="#Seat_Comfort" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Comfort">Seat_Comfort</a> <sup class="type-c" title="class">c</sup>, <a href="#Value_for_Money" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Value_for_Money">Value_for_Money</a> <sup class="type-c" title="class">c</sup>, <a href="#Wifi_&_Connectivity" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&amp;_Connectivity">Wifi_&amp;_Connectivity</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#has_rating_value" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_rating_value">has_rating_value</a> <sup class="type-dp" title="data property">dp</sup>, <a href="#is_rating_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of">is_rating_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings">has_rating</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Food_&_Beverages">
+  <h3>Food_&amp;_Beverages<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&amp;_Beverages</p>
+  <div class="comment">
+   <span class="markdown">The food and beverages rating assesses the quality, variety, and presentation of meals and refreshments offered during the flight</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Ground_Service">
+  <h3>Ground_Service<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Ground_Service</p>
+  <div class="comment">
+   <span class="markdown">The ground service rating reflects the efficiency and effectiveness of services provided at airports, such as check-in, baggage handling, and boarding processes</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Inflight_Entertainment">
+  <h3>Inflight_Entertainment<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Inflight_Entertainment</p>
+  <div class="comment">
+   <span class="markdown">The inflight entertainment rating considers the availability and quality of entertainment options, including movies, TV shows, music, and games</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Leisure">
+  <h3>Leisure<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure</p>
+  <div class="comment">
+   <span class="markdown">Class for passengers travelling for personal reasons, like relaxation and fun</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Type_of_Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger">Type_of_Passenger</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Couple_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure">Couple_Leisure</a> <sup class="type-c" title="class">c</sup>, <a href="#Family_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure">Family_Leisure</a> <sup class="type-c" title="class">c</sup>, <a href="#Solo_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure">Solo_Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Business" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business">Business</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Location">
+  <h3>Location<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location</p>
+  <div class="comment">
+   <span class="markdown">Represents the location for the departure or the final destination of a flight</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#arrives_to" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to">arrives_to</a> <sup class="type-op" title="object property">op</sup>, <a href="#departs_from" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from">departs_from</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Month">
+  <h3>Month<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Month</p>
+  <div class="comment">
+   <span class="markdown">Represents a month on a date</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Neutral">
+  <h3>Neutral<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral</p>
+  <div class="comment">
+   <span class="markdown">Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level "neutral"</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Satisfaction" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Dissatisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied">Dissatisfied</a> <sup class="type-c" title="class">c</sup>, <a href="#Satisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied">Satisfied</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Overall_Rating">
+  <h3>Overall_Rating<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Overall_Rating</p>
+  <div class="comment">
+   <span class="markdown">The overall rating of an airline is influenced by multiple factors related to seat comfort, cabin staff, food and beverages, inflight entertainment, ground service, WiFi connectivity, and value for money</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Passenger">
+  <h3>Passenger<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger</p>
+  <div class="comment">
+   <span class="markdown">A passenger is a term broadly used to describe any person who travels in a vehicle, but bears little or no responsibility for the tasks required for that vehicle to arrive at its destination</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Type_of_Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger">Type_of_Passenger</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#has_country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country">has_country</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_reviewer_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of">is_reviewer_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#has_reviewer" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer">has_reviewer</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_country_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of">is_country_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Premium_Economy">
+  <h3>Premium_Economy<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy</p>
+  <div class="comment">
+   <span class="markdown">Premium economy is a travel class offered on some airlines, positioned in price, comfort, and amenities between Economy class and Business class.</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Seat_Type" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type">Seat_Type</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Business_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Economy_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#First_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Review">
+  <h3>Review<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review</p>
+  <div class="comment">
+   <span class="markdown">This class represents an airline passenger review of a flight</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd></dd>
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Satisfaction" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#has_airline" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline">has_airline</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_comment" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_comment">has_comment</a> <sup class="type-dp" title="data property">dp</sup>, <a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_flight_information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information">has_flight_information</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings">has_rating</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_reviewer" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer">has_reviewer</a> <sup class="type-op" title="object property">op</sup>, <a href="#has_title" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_title">has_title</a> <sup class="type-dp" title="data property">dp</sup>, <a href="#is_recommended" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_recommended">is_recommended</a> <sup class="type-dp" title="data property">dp</sup>, <a href="#published_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on">published_on</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#is_flight_information_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of">is_flight_information_of</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_rating_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of">is_rating_of</a> <sup class="type-op" title="object property">op</sup>, <a href="#is_reviewer_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of">is_reviewer_of</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Satisfaction">
+  <h3>Satisfaction<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction</p>
+  <div class="comment">
+   <span class="markdown">This class represents a categorical measure of how services supplied by an airline meet or surpass customer expectation</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Dissatisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied">Dissatisfied</a> <sup class="type-c" title="class">c</sup>, <a href="#Neutral" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral">Neutral</a> <sup class="type-c" title="class">c</sup>, <a href="#Satisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied">Satisfied</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Satisfied">
+  <h3>Satisfied<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied</p>
+  <div class="comment">
+   <span class="markdown">Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level "satisfied"</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Satisfaction" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction">Satisfaction</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Dissatisfied" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied">Dissatisfied</a> <sup class="type-c" title="class">c</sup>, <a href="#Neutral" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral">Neutral</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Seat_Comfort">
+  <h3>Seat_Comfort<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Comfort</p>
+  <div class="comment">
+   <span class="markdown">The seat comfort rating reflects the comfort level and amenities provided in the aircraft seating, such as legroom, seat width, and recline options</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Seat_Type">
+  <h3>Seat_Type<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type</p>
+  <div class="comment">
+   <span class="markdown">The seat type corresponds to the concept of travel class, a quality of accommodation on public transport. Higher travel classes are more comfortable and more expensive.</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Business_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class">Business_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Economy_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class">Economy_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#First_Class" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class">First_Class</a> <sup class="type-c" title="class">c</sup>, <a href="#Premium_Economy" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy">Premium_Economy</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Solo_Leisure">
+  <h3>Solo_Leisure<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure</p>
+  <div class="comment">
+   <span class="markdown">A type of leisure passenger who doesn't travel with family members or with a romantic partner</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    is disjoint with
+   </dt>
+   <dd>
+    <a href="#Couple_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure">Couple_Leisure</a> <sup class="type-c" title="class">c</sup>, <a href="#Family_Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure">Family_Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Type_of_Passenger">
+  <h3>Type_of_Passenger<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger</p>
+  <div class="comment">
+   <span class="markdown">Classification of travellers depending on the various reasons why they travel, like attending a job interview, a family function, a business meeting, seeking adventure, etc. Passengers can be broadly classified into two groups: business passengers and leisure passengers</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+   <dt>
+    has sub-classes
+   </dt>
+   <dd>
+    <a href="#Business" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business">Business</a> <sup class="type-c" title="class">c</sup>, <a href="#Leisure" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure">Leisure</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Value_for_Money">
+  <h3>Value_for_Money<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Value_for_Money</p>
+  <div class="comment">
+   <span class="markdown">The value-for-money rating takes into account the overall satisfaction and perception of passengers regarding the price paid for the services received</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Wifi_&_Connectivity">
+  <h3>Wifi_&amp;_Connectivity<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&amp;_Connectivity</p>
+  <div class="comment">
+   <span class="markdown">The WiFi connectivity rating evaluates the reliability and speed of the onboard internet connection</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Year">
+  <h3>Year<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Year</p>
+  <div class="comment">
+   <span class="markdown">Represents a year on a date</span>
+  </div>
+  <dl class="description">
+   <dt>
+    has super-classes
+   </dt>
+   <dd>
+    <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+   </dd>
+  </dl>
+ </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+ <h3 id="properties" class="list">Object Properties</h3>
+ <ul class="hlist">
+  <li><a href="#arrives_to" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to">arrives_to</a></li>
+  <li><a href="#departs_from" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from">departs_from</a></li>
+  <li><a href="#flown_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on">flown_on</a></li>
+  <li><a href="#has_aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft">has_aircraft</a></li>
+  <li><a href="#has_airline" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline">has_airline</a></li>
+  <li><a href="#has_country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country">has_country</a></li>
+  <li><a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a></li>
+  <li><a href="#has_flight_information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information">has_flight_information</a></li>
+  <li><a href="#has_location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a></li>
+  <li><a href="#has_ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings">has_rating</a></li>
+  <li><a href="#has_reviewer" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer">has_reviewer</a></li>
+  <li><a href="#is_aircraft_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of">is_aircraft_of</a></li>
+  <li><a href="#is_country_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of">is_country_of</a></li>
+  <li><a href="#is_flight_information_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of">is_flight_information_of</a></li>
+  <li><a href="#is_rating_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of">is_rating_of</a></li>
+  <li><a href="#is_reviewer_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of">is_reviewer_of</a></li>
+  <li><a href="#published_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on">published_on</a></li>
+ </ul>
+ <div class="entity" id="arrives_to">
+  <h3>arrives_to<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to</p>
+  <div class="comment">
+   <span class="markdown">A flight arrives to a destination (city, country, airport, via...)</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has super-properties
+    </dt>
+    <dd>
+     <a href="#has_location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="departs_from">
+  <h3>departs_from<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from</p>
+  <div class="comment">
+   <span class="markdown">A flight departs from an origin (city, country, airport, via...)</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has super-properties
+    </dt>
+    <dd>
+     <a href="#has_location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location">has_location</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="flown_on">
+  <h3>flown_on<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on</p>
+  <div class="comment">
+   <span class="markdown">A flight is flown on a date</span>
+  </div>
+  <div class="description">
+   <dl>
+    <dt>
+     has super-properties
+    </dt>
+    <dd>
+     <a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_aircraft">
+  <h3>has_aircraft<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft</p>
+  <div class="comment">
+   <span class="markdown">A flight is flown in an aircraft</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft">Aircraft</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#is_aircraft_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of">is_aircraft_of</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_airline">
+  <h3>has_airline<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline</p>
+  <div class="comment">
+   <span class="markdown">Every review is about an airline</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Airline" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Airline">Airline</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_country">
+  <h3>has_country<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country</p>
+  <div class="comment">
+   <span class="markdown">A passenger is a citizen of a country</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country">Country</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#is_country_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of">is_country_of</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_date">
+  <h3>has_date<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date</p>
+  <div class="comment">
+   <span class="markdown">A property created to point out the relationship between properties with date ranges</span>
+  </div>
+  <div class="description">
+   <dl>
+    <dt>
+     has sub-properties
+    </dt>
+    <dd>
+     <a href="#flown_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on">flown_on</a> <sup class="type-op" title="object property">op</sup>, <a href="#published_on" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on">published_on</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup> <span class="logic">or</span> <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_flight_information">
+  <h3>has_flight_information<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information</p>
+  <div class="comment">
+   <span class="markdown">A review has information about the flight is reviewing</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#is_flight_information_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of">is_flight_information_of</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_location">
+  <h3>has_location<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location</p>
+  <div class="comment">
+   <span class="markdown">A property created to point out the relationship between properties of a flight that have a location as a range</span>
+  </div>
+  <div class="description">
+   <dl>
+    <dt>
+     has sub-properties
+    </dt>
+    <dd>
+     <a href="#arrives_to" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to">arrives_to</a> <sup class="type-op" title="object property">op</sup>, <a href="#departs_from" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from">departs_from</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Location" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location">Location</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_ratings">
+  <h3>has_rating<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings</p>
+  <div class="comment">
+   <span class="markdown">An airline passenger review has at least one overall rating, but it might have other ratings</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#is_rating_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of">is_rating_of</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_reviewer">
+  <h3>has_reviewer<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer</p>
+  <div class="comment">
+   <span class="markdown">The author (a passenger) of a review</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#is_reviewer_of" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of">is_reviewer_of</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_aircraft_of">
+  <h3>is_aircraft_of<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of</p>
+  <div class="comment">
+   <span class="markdown">The inverse property of has_aircraft</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> inverse functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft">Aircraft</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#has_aircraft" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft">has_aircraft</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_country_of">
+  <h3>is_country_of<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of</p>
+  <div class="comment">
+   <span class="markdown">The inverse property of has_country</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> inverse functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country">Country</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#has_country" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country">has_country</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_flight_information_of">
+  <h3>is_flight_information_of<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of</p>
+  <div class="comment">
+   <span class="markdown">The inverse property of has_flight_information</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> inverse functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#has_flight_information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information">has_flight_information</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_rating_of">
+  <h3>is_rating_of<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of</p>
+  <div class="comment">
+   <span class="markdown">The inverse property of has_rating</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#has_ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings">has_rating</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_reviewer_of">
+  <h3>is_reviewer_of<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of</p>
+  <div class="comment">
+   <span class="markdown">The inverse property of has_reviewer</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> inverse functional, asymmetric</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Passenger" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger">Passenger</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     is inverse of
+    </dt>
+    <dd>
+     <a href="#has_reviewer" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer">has_reviewer</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="published_on">
+  <h3>published_on<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on</p>
+  <div class="comment">
+   <span class="markdown">A review is published on a date</span>
+  </div>
+  <div class="description">
+   <dl>
+    <dt>
+     has super-properties
+    </dt>
+    <dd>
+     <a href="#has_date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date">has_date</a> <sup class="type-op" title="object property">op</sup>
+    </dd>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Date" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date">Date</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
+ <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+ <ul class="hlist">
+  <li><a href="#has_comment" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_comment">has_comment</a></li>
+  <li><a href="#has_rating_value" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_rating_value">has_rating_value</a></li>
+  <li><a href="#has_title" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_title">has_title</a></li>
+  <li><a href="#is_recommended" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_recommended">is_recommended</a></li>
+  <li><a href="#is_verified" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_verified">is_verified</a></li>
+ </ul>
+ <div class="entity" id="has_comment">
+  <h3>has_comment<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_comment</p>
+  <div class="comment">
+   <span class="markdown">A data property created to be used with the text of the passenger review</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="http://www.w3.org/2001/XMLSchema#string" target="_blank" title="http://www.w3.org/2001/XMLSchema#string">string</a>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_rating_value">
+  <h3>has_rating_value<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_rating_value</p>
+  <div class="comment">
+   <span class="markdown">A data property created to be used with the value of a rating. This number is a positive integer between 1 and 10</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Ratings" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings">Flight_Rating</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd></dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="has_title">
+  <h3>has_title<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_title</p>
+  <div class="comment">
+   <span class="markdown">A data property created to be used with the title of the passenger review</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="http://www.w3.org/2001/XMLSchema#string" target="_blank" title="http://www.w3.org/2001/XMLSchema#string">string</a>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_recommended">
+  <h3>is_recommended<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_recommended</p>
+  <div class="comment">
+   <span class="markdown">A data property created to assert if the passenger recommends the airline for the flight of the review. It is considered a data property of a review</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Review" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review">Review</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="http://www.w3.org/2001/XMLSchema#boolean" target="_blank" title="http://www.w3.org/2001/XMLSchema#boolean">boolean</a>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="is_verified">
+  <h3>is_verified<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_verified</p>
+  <div class="comment">
+   <span class="markdown">A data property created to assert if the flight has been verified. This means the editorial staff have inspected a copy of an e-ticket, booking details or a boarding pass, with the passenger name confirming the trip written about in the review</span>
+  </div>
+  <div class="description">
+   <p><strong>has characteristics: </strong> functional</p>
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Flight_Information" title="http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information">Flight_Information</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="http://www.w3.org/2001/XMLSchema#boolean" target="_blank" title="http://www.w3.org/2001/XMLSchema#boolean">boolean</a>
+    </dd>
+   </dl>
+  </div>
+ </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="annotationproperties">
+ <h3 id="annotationproperties" class="list">Annotation Properties</h3>
+ <ul class="hlist">
+  <li><a href="#http://www.w3.org/2000/01/rdf-schema#sameAs" title="http://www.w3.org/2000/01/rdf-schema#sameAs"> <span>same As</span> </a></li>
+ </ul>
+ <div class="entity" id="http://www.w3.org/2000/01/rdf-schema#sameAs">
+  <h3>same As<sup class="type-ap" title="annotation property">ap</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> http://www.w3.org/2000/01/rdf-schema#sameAs</p>
+ </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>

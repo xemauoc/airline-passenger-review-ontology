@@ -1,0 +1,601 @@
+@prefix : <http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#> .
+
+<http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review> rdf:type owl:Ontology ;
+                                                                              rdfs:comment "This ontology defines concepts for the representation of customer satisfaction reviews by airline passengers. Created by Xema Belmonte Marin (jbelmontemari@uoc.edu)" ;
+                                                                              rdfs:label "Airline Passenger Review Ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#sameAs
+rdfs:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#arrives_to
+:arrives_to rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :has_location ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Flight_Information ;
+            rdfs:range :Location ;
+            owl:propertyDisjointWith :departs_from ;
+            rdfs:comment "A flight arrives to a destination (city, country, airport, via...)" ;
+            rdfs:label "arrives_to" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#departs_from
+:departs_from rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :has_location ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain :Flight_Information ;
+              rdfs:range :Location ;
+              rdfs:comment "A flight departs from an origin (city, country, airport, via...)" ;
+              rdfs:label "departs_from" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#flown_on
+:flown_on rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :has_date ;
+          rdfs:domain :Flight_Information ;
+          rdfs:range :Date ;
+          rdfs:comment "A flight is flown on a date" ;
+          rdfs:label "flown_on" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_aircraft
+:has_aircraft rdf:type owl:ObjectProperty ;
+              owl:inverseOf :is_aircraft_of ;
+              rdf:type owl:FunctionalProperty ,
+                       owl:AsymmetricProperty ;
+              rdfs:domain :Flight_Information ;
+              rdfs:range :Aircraft ;
+              rdfs:comment "A flight is flown in an aircraft" ;
+              rdfs:label "has_aircraft" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_airline
+:has_airline rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ,
+                      owl:AsymmetricProperty ;
+             rdfs:domain :Review ;
+             rdfs:range :Airline ;
+             rdfs:comment "Every review is about an airline" ;
+             rdfs:label "has_airline" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_country
+:has_country rdf:type owl:ObjectProperty ;
+             owl:inverseOf :is_country_of ;
+             rdf:type owl:FunctionalProperty ,
+                      owl:AsymmetricProperty ;
+             rdfs:domain :Passenger ;
+             rdfs:range :Country ;
+             rdfs:comment "A passenger is a citizen of a country" ;
+             rdfs:label "has_country" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_date
+:has_date rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Flight_Information
+                                      :Review
+                                    )
+                      ] ;
+          rdfs:range :Date ;
+          rdfs:comment "A property created to point out the relationship between properties with date ranges" ;
+          rdfs:label "has_date" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_flight_information
+:has_flight_information rdf:type owl:ObjectProperty ;
+                        owl:inverseOf :is_flight_information_of ;
+                        rdf:type owl:FunctionalProperty ,
+                                 owl:AsymmetricProperty ;
+                        rdfs:domain :Review ;
+                        rdfs:range :Flight_Information ;
+                        rdfs:comment "A review has information about the flight is reviewing" ;
+                        rdfs:label "has_flight_information" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_location
+:has_location rdf:type owl:ObjectProperty ;
+              rdfs:domain :Flight_Information ;
+              rdfs:range :Location ;
+              rdfs:comment "A property created to point out the relationship between properties of a flight that have a location as a range" ;
+              rdfs:label "has_location" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_ratings
+:has_ratings rdf:type owl:ObjectProperty ;
+             owl:inverseOf :is_rating_of ;
+             rdf:type owl:AsymmetricProperty ;
+             rdfs:domain :Review ;
+             rdfs:range :Flight_Ratings ;
+             rdfs:comment "An airline passenger review has at least one overall rating, but it might have other ratings" ;
+             rdfs:label "has_rating" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_reviewer
+:has_reviewer rdf:type owl:ObjectProperty ;
+              owl:inverseOf :is_reviewer_of ;
+              rdf:type owl:FunctionalProperty ,
+                       owl:AsymmetricProperty ;
+              rdfs:domain :Review ;
+              rdfs:range :Passenger ;
+              rdfs:comment "The author (a passenger) of a review" ;
+              rdfs:label "has_reviewer" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_aircraft_of
+:is_aircraft_of rdf:type owl:ObjectProperty ,
+                         owl:InverseFunctionalProperty ,
+                         owl:AsymmetricProperty ;
+                rdfs:domain :Aircraft ;
+                rdfs:range :Flight_Information ;
+                rdfs:comment "The inverse property of has_aircraft" ;
+                rdfs:label "is_aircraft_of" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_country_of
+:is_country_of rdf:type owl:ObjectProperty ,
+                        owl:InverseFunctionalProperty ,
+                        owl:AsymmetricProperty ;
+               rdfs:domain :Country ;
+               rdfs:range :Passenger ;
+               rdfs:comment "The inverse property of has_country" ;
+               rdfs:label "is_country_of" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_flight_information_of
+:is_flight_information_of rdf:type owl:ObjectProperty ,
+                                   owl:InverseFunctionalProperty ,
+                                   owl:AsymmetricProperty ;
+                          rdfs:domain :Flight_Information ;
+                          rdfs:range :Review ;
+                          rdfs:comment "The inverse property of has_flight_information" ;
+                          rdfs:label "is_flight_information_of" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_rating_of
+:is_rating_of rdf:type owl:ObjectProperty ,
+                       owl:AsymmetricProperty ;
+              rdfs:domain :Flight_Ratings ;
+              rdfs:range :Review ;
+              rdfs:comment "The inverse property of has_rating" ;
+              rdfs:label "is_rating_of" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_reviewer_of
+:is_reviewer_of rdf:type owl:ObjectProperty ,
+                         owl:InverseFunctionalProperty ,
+                         owl:AsymmetricProperty ;
+                rdfs:domain :Passenger ;
+                rdfs:range :Review ;
+                rdfs:comment "The inverse property of has_reviewer" ;
+                rdfs:label "is_reviewer_of" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#published_on
+:published_on rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :has_date ;
+              rdfs:domain :Review ;
+              rdfs:range :Date ;
+              rdfs:comment "A review is published on a date" ;
+              rdfs:label "published_on" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_comment
+:has_comment rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Review ;
+             rdfs:range xsd:string ;
+             rdfs:comment "A data property created to be used with the text of the passenger review" ;
+             rdfs:label "has_comment" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_rating_value
+:has_rating_value rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Flight_Ratings ;
+                  rdfs:range [ rdf:type rdfs:Datatype ;
+                               owl:onDatatype xsd:positiveInteger ;
+                               owl:withRestrictions ( [ xsd:maxInclusive "10"^^xsd:positiveInteger
+                                                      ]
+                                                    )
+                             ] ;
+                  rdfs:comment "A data property created to be used with the value of a rating. This number is a positive integer between 1 and 10" ;
+                  rdfs:label "has_rating_value" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#has_title
+:has_title rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Review ;
+           rdfs:range xsd:string ;
+           rdfs:comment "A data property created to be used with the title of the passenger review" ;
+           rdfs:label "has_title" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_recommended
+:is_recommended rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Review ;
+                rdfs:range xsd:boolean ;
+                rdfs:comment "A data property created to assert if the passenger recommends the airline for the flight of the review. It is considered a data property of a review" ;
+                rdfs:label "is_recommended" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#is_verified
+:is_verified rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Flight_Information ;
+             rdfs:range xsd:boolean ;
+             rdfs:comment "A data property created to assert if the flight has been verified. This means the editorial staff have inspected a copy of an e-ticket, booking details or a boarding pass, with the passenger name confirming the trip written about in the review" ;
+             rdfs:label "is_verified" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Aircraft
+:Aircraft rdf:type owl:Class ;
+          rdfs:subClassOf :Flight_Information ;
+          rdfs:comment "Represents a manufactured passenger aircraft" ;
+          rdfs:label "Aircraft" ;
+          rdfs:sameAs "https://dbpedia.org/page/Aircraft" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Airline
+:Airline rdf:type owl:Class ;
+         rdfs:comment "This class represents a company that provides air transport for passengers" ;
+         rdfs:label "Airline" ;
+         rdfs:sameAs "https://dbpedia.org/page/Airline" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business
+:Business rdf:type owl:Class ;
+          rdfs:subClassOf :Type_of_Passenger ;
+          owl:disjointWith :Leisure ;
+          rdfs:comment "Class for passengers travelling with a clear purpose of performing business related activities" ;
+          rdfs:label "Business" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Business_Class
+:Business_Class rdf:type owl:Class ;
+                rdfs:subClassOf :Seat_Type ;
+                owl:disjointWith :Economy_Class ,
+                                 :First_Class ,
+                                 :Premium_Economy ;
+                rdfs:comment "Business class is a travel class originally intended as an intermediate level of service between economy class and first class, but many airlines now offer business class as the highest level of service." ;
+                rdfs:label "Business_Class" ;
+                rdfs:sameAs "https://dbpedia.org/page/Business_class" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Cabin_Staff_Service
+:Cabin_Staff_Service rdf:type owl:Class ;
+                     rdfs:subClassOf :Flight_Ratings ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :has_rating_value ;
+                                       owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                           owl:onDatatype xsd:positiveInteger ;
+                                                           owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                                  ]
+                                                                                )
+                                                         ]
+                                     ] ;
+                     rdfs:comment "The cabin staff rating evaluates the professionalism, friendliness, and responsiveness of the flight attendants and other staff members" ;
+                     rdfs:label "Cabin_Staff_Service" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Country
+:Country rdf:type owl:Class ;
+         rdfs:comment "Represents a political state, nation or territory" ;
+         rdfs:label "Country" ;
+         rdfs:sameAs "https://dbpedia.org/page/Country" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Couple_Leisure
+:Couple_Leisure rdf:type owl:Class ;
+                rdfs:subClassOf :Leisure ;
+                rdfs:comment "A type of leisure passenger who travels with a romantic partner" ;
+                rdfs:label "Couple_Leisure" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Date
+:Date rdf:type owl:Class ;
+      rdfs:comment "Class to represent a date with month, year and/or day" ;
+      rdfs:label "Date" ;
+      rdfs:sameAs "https://dbpedia.org/page/Date" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Day
+:Day rdf:type owl:Class ;
+     rdfs:subClassOf :Date ;
+     rdfs:comment "Represents a day on a date" ;
+     rdfs:label "Day" ;
+     rdfs:sameAs "https://dbpedia.org/page/Day" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Dissatisfied
+:Dissatisfied rdf:type owl:Class ;
+              rdfs:subClassOf :Satisfaction ;
+              rdfs:comment "Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level \"dissatisfied\"" ;
+              rdfs:label "Dissatisfied" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Economy_Class
+:Economy_Class rdf:type owl:Class ;
+               rdfs:subClassOf :Seat_Type ;
+               owl:disjointWith :First_Class ,
+                                :Premium_Economy ;
+               rdfs:comment "Economy clas or standard class, is the lowest class of seating in air travel." ;
+               rdfs:label "Economy_Class" ;
+               rdfs:sameAs "https://dbpedia.org/page/Economy_class" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Family_Leisure
+:Family_Leisure rdf:type owl:Class ;
+                rdfs:subClassOf :Leisure ;
+                rdfs:comment "A type of leisure passenger who travels with children" ;
+                rdfs:label "Family_Leisure" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#First_Class
+:First_Class rdf:type owl:Class ;
+             rdfs:subClassOf :Seat_Type ;
+             owl:disjointWith :Premium_Economy ;
+             rdfs:comment "First class is the most luxurious class of accommodation on an airplan. It is usually much more expensive than business class and economy class, and offers the best amenities." ;
+             rdfs:label "First_Class" ;
+             rdfs:sameAs "https://dbpedia.org/page/First_class_(aviation)" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Information
+:Flight_Information rdf:type owl:Class ;
+                    rdfs:comment "This class includes the subclasses for the flight information that contains a review" ;
+                    rdfs:label "Flight_Information" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Flight_Ratings
+:Flight_Ratings rdf:type owl:Class ;
+                rdfs:comment "This class represents the concept of ratings for the services or the whole experience of a flight. They are assessed by a passenger of such flight" ;
+                rdfs:label "Flight_Rating" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Ground_Service
+:Ground_Service rdf:type owl:Class ;
+                rdfs:subClassOf :Flight_Ratings ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :has_rating_value ;
+                                  owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                      owl:onDatatype xsd:positiveInteger ;
+                                                      owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                             ]
+                                                                           )
+                                                    ]
+                                ] ;
+                rdfs:comment "The ground service rating reflects the efficiency and effectiveness of services provided at airports, such as check-in, baggage handling, and boarding processes" ;
+                rdfs:label "Ground_Service" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Inflight_Entertainment
+:Inflight_Entertainment rdf:type owl:Class ;
+                        rdfs:subClassOf :Flight_Ratings ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :has_rating_value ;
+                                          owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                              owl:onDatatype xsd:positiveInteger ;
+                                                              owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                                     ]
+                                                                                   )
+                                                            ]
+                                        ] ;
+                        rdfs:comment "The inflight entertainment rating considers the availability and quality of entertainment options, including movies, TV shows, music, and games" ;
+                        rdfs:label "Inflight_Entertainment" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Leisure
+:Leisure rdf:type owl:Class ;
+         rdfs:subClassOf :Type_of_Passenger ;
+         rdfs:comment "Class for passengers travelling for personal reasons, like relaxation and fun" ;
+         rdfs:label "Leisure" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Location
+:Location rdf:type owl:Class ;
+          rdfs:subClassOf :Flight_Information ;
+          rdfs:comment "Represents the location for the departure or the final destination of a flight" ;
+          rdfs:label "Location" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Month
+:Month rdf:type owl:Class ;
+       rdfs:subClassOf :Date ;
+       rdfs:comment "Represents a month on a date" ;
+       rdfs:label "Month" ;
+       rdfs:sameAs "https://dbpedia.org/page/Month" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Neutral
+:Neutral rdf:type owl:Class ;
+         rdfs:subClassOf :Satisfaction ;
+         rdfs:comment "Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level \"neutral\"" ;
+         rdfs:label "Neutral" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Overall_Rating
+:Overall_Rating rdf:type owl:Class ;
+                rdfs:subClassOf :Flight_Ratings ;
+                rdfs:comment "The overall rating of an airline is influenced by multiple factors related to seat comfort, cabin staff, food and beverages, inflight entertainment, ground service, WiFi connectivity, and value for money" ;
+                rdfs:label "Overall_Rating" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Passenger
+:Passenger rdf:type owl:Class ;
+           rdfs:comment "A passenger is a term broadly used to describe any person who travels in a vehicle, but bears little or no responsibility for the tasks required for that vehicle to arrive at its destination" ;
+           rdfs:label "Passenger" ;
+           rdfs:sameAs "https://dbpedia.org/page/Passenger" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Premium_Economy
+:Premium_Economy rdf:type owl:Class ;
+                 rdfs:subClassOf :Seat_Type ;
+                 rdfs:comment "Premium economy is a travel class offered on some airlines, positioned in price, comfort, and amenities between Economy class and Business class." ;
+                 rdfs:label "Premium_Economy" ;
+                 rdfs:sameAs "https://dbpedia.org/page/Premium_economy_class" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Review
+:Review rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :has_ratings ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Overall_Rating
+                        ] ;
+        rdfs:comment "This class represents an airline passenger review of a flight" ;
+        rdfs:label "Review" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfaction
+:Satisfaction rdf:type owl:Class ;
+              rdfs:subClassOf :Review ;
+              rdfs:comment "This class represents a categorical measure of how services supplied by an airline meet or surpass customer expectation" ;
+              rdfs:label "Satisfaction" ;
+              rdfs:sameAs "https://dbpedia.org/page/Customer_satisfaction" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Satisfied
+:Satisfied rdf:type owl:Class ;
+           rdfs:subClassOf :Satisfaction ;
+           rdfs:comment "Represents one of the levels of satisfaction with the airline the passenger belongs to. In this case, level \"satisfied\"" ;
+           rdfs:label "Satisfied" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Comfort
+:Seat_Comfort rdf:type owl:Class ;
+              rdfs:subClassOf :Flight_Ratings ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :has_rating_value ;
+                                owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                    owl:onDatatype xsd:positiveInteger ;
+                                                    owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                           ]
+                                                                         )
+                                                  ]
+                              ] ;
+              rdfs:comment "The seat comfort rating reflects the comfort level and amenities provided in the aircraft seating, such as legroom, seat width, and recline options" ;
+              rdfs:label "Seat_Comfort" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Seat_Type
+:Seat_Type rdf:type owl:Class ;
+           rdfs:subClassOf :Flight_Information ;
+           rdfs:comment "The seat type corresponds to the concept of travel class, a quality of accommodation on public transport. Higher travel classes are more comfortable and more expensive." ;
+           rdfs:label "Seat_Type" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Solo_Leisure
+:Solo_Leisure rdf:type owl:Class ;
+              rdfs:subClassOf :Leisure ;
+              rdfs:comment "A type of leisure passenger who doesn't travel with family members or with a romantic partner" ;
+              rdfs:label "Solo_Leisure" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Type_of_Passenger
+:Type_of_Passenger rdf:type owl:Class ;
+                   rdfs:subClassOf :Passenger ;
+                   rdfs:comment "Classification of travellers depending on the various reasons why they travel, like attending a job interview, a family function, a business meeting, seeking adventure, etc. Passengers can be broadly classified into two groups: business passengers and leisure passengers" ;
+                   rdfs:label "Type_of_Passenger" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Value_for_Money
+:Value_for_Money rdf:type owl:Class ;
+                 rdfs:subClassOf :Flight_Ratings ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :has_rating_value ;
+                                   owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                       owl:onDatatype xsd:positiveInteger ;
+                                                       owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                              ]
+                                                                            )
+                                                     ]
+                                 ] ;
+                 rdfs:comment "The value-for-money rating takes into account the overall satisfaction and perception of passengers regarding the price paid for the services received" ;
+                 rdfs:label "Value_for_Money" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Year
+:Year rdf:type owl:Class ;
+      rdfs:subClassOf :Date ;
+      rdfs:comment "Represents a year on a date" ;
+      rdfs:label "Year" ;
+      rdfs:sameAs "https://dbpedia.org/page/Year" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&_Beverages
+<http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Food_&_Beverages> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf :Flight_Ratings ,
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty :has_rating_value ;
+                                                                                                                owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                    owl:onDatatype xsd:positiveInteger ;
+                                                                                                                                    owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                                                                                                           ]
+                                                                                                                                                         )
+                                                                                                                                  ]
+                                                                                                              ] ;
+                                                                                              rdfs:comment "The food and beverages rating assesses the quality, variety, and presentation of meals and refreshments offered during the flight" ;
+                                                                                              rdfs:label "Food_&_Beverages" .
+
+
+###  http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&_Connectivity
+<http://www.semanticweb.org/xema/ontologies/2024/3/Airline_Passenger_Review#Wifi_&_Connectivity> rdf:type owl:Class ;
+                                                                                                 rdfs:subClassOf :Flight_Ratings ,
+                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                   owl:onProperty :has_rating_value ;
+                                                                                                                   owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                       owl:onDatatype xsd:positiveInteger ;
+                                                                                                                                       owl:withRestrictions ( [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                                                                                                              ]
+                                                                                                                                                            )
+                                                                                                                                     ]
+                                                                                                                 ] ;
+                                                                                                 rdfs:comment "The WiFi connectivity rating evaluates the reliability and speed of the onboard internet connection" ;
+                                                                                                 rdfs:label "Wifi_&_Connectivity" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Couple_Leisure
+                :Family_Leisure
+                :Solo_Leisure
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Dissatisfied
+                :Neutral
+                :Satisfied
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
